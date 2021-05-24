@@ -7,9 +7,10 @@ function sortAccountsByLastName(accounts) {
 }
 
 function getTotalNumberOfBorrows(account, books) {
-  let counter = 0;
-  books.forEach(book => book.borrows.forEach(borrowed => borrowed.id === account.id ? counter++ : counter+0))
-  return counter
+  return books.map(book => book.borrows).reduce((acc, book) => {
+    acc.push(...book)
+    return acc
+  }, []).filter(borrowed => borrowed.id === account.id).length
 }
 
 function getBooksPossessedByAccount(account, books, authors) {
@@ -28,11 +29,3 @@ module.exports = {
   getTotalNumberOfBorrows,
   getBooksPossessedByAccount,
 };
-
-
-// let posessed = books.filter(book => {
-  //   let borrowed = book.borrows.filter(borrow => !borrow.returned)
-  //   console.log(borrowed, Array.isArray(borrowed))
-  // })
-  // console.log(Array.isArray(posessed))
-  // console.log(posessed)

@@ -11,9 +11,6 @@ function getBooksBorrowedCount(books) {
 }
 
 function getMostCommonGenres(books) {
-  //return array with 5 or fewer objects that are most common genres
-  // order from most to least
-  // each object has a name and count key (amount of times)
   let genres = []
   books.forEach(book => {
     if(!genres.some(genre => genre.name === book.genre)) {
